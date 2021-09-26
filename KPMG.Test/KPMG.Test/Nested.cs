@@ -1,12 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 
 namespace KPMG_Test
 {
+    [Serializable]
     public class Nested
     {
         private string _key;
         private string _value;
         private Nested _self;
+        
+        public string Key { get { return _key; } }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string Value { get { return _value; } }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "NestedValue")]        
+        public Nested Self { get { return _self; } }
 
         public Nested(string key, Nested self)
         {
@@ -55,19 +66,39 @@ namespace KPMG_Test
         {
             Nested nestedObj = _self;
 
-            if (nestedObj == null)
-                return _value;
+            if (!this.ContainsKey(key))
+            {
+                throw new InvalidOperationException("Key not exists");
+            }
+
+            if (_key == key)
+            {
+                if (_value == null)
+                {
+                    return nestedObj;
+                }
+                else
+                {
+                    return _value;
+                }
+            }
 
             while (nestedObj._value == null)
             {
                 if (nestedObj._key == key)
                 {
-                    return nestedObj;
+                    return nestedObj._self;
                 }
                 nestedObj = nestedObj._self;
             };
 
             return nestedObj?._value;
+        }
+
+        private bool ContainsKey(string key)
+        {
+            var keys = GetKeys();
+            return keys.Contains(key);
         }
     }
 }
