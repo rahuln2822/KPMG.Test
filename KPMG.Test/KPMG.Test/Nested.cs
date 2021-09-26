@@ -95,7 +95,7 @@ namespace KPMG_Test
             return nestedObj?._value;
         }
 
-        private bool ContainsKey(string key)
+        public bool ContainsKey(string key)
         {
             var keys = GetKeys();
             return keys.Contains(key);
