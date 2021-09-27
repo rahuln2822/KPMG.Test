@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-08-01/managementGroupDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "enrollmentAccount": {
+      "type": "string"
+    },
+    "billingAccount": {
+      "type": "string"
+    },
+    "subscriptionAlias": {
+      "type": "string"
+    },
+    "subscriptionDisplayName": {
+      "type": "string"
+    },
+    "subscriptionWorkload": {
+      "type": "string",
+      "defaultValue": "DevTest"
+    }
+  },
+  "resources": [
+    {
+      "scope": "/",
+      "type": "Microsoft.Subscription/aliases",
+      "apiVersion": "2020-09-01",
+      "name": "[parameters('subscriptionAlias')]",
+      "properties": {
+        "workload": "[parameters('subscriptionWorkload')]",
+        "displayName": "[parameters('subscriptionDisplayName')]",
+        "billingScope": "[tenantResourceId('Microsoft.Billing/billingAccounts/enrollmentAccounts', parameters('billingAccount'), parameters('enrollmentAccount'))]"
+      }
+    }
+  ],
+  "outputs": {
+    "subscriptionId": {
+      "type": "string",
+      "value": "[reference(parameters('subscriptionAlias')).subscriptionId]"
+    }
+  }
+}
