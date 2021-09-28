@@ -1,1 +1,51 @@
-zure
+pool:
+  vmImage:'windows-latest'
+
+trigger:
+  branches:
+    include:
+      - '*'
+
+Stages:
+  - stage: build_and_test
+    displayName: Build and Test
+    jobs:
+      - job: build_and_test
+        steps:
+          - task: install nuget
+          - task: restore packages
+          - task: publish project artifacts like templates and dlls
+          - task: AzureResourceGroupDeployment@2
+  
+  - stage: dev_provisioning
+    displayName: Dev env provisioning
+    condition: succeeded()
+    dependsOn: build_and_test
+    variables: Variables/dev.yml
+    jobs:
+      - job: dev_provisioning
+        steps:
+          - task: replacetoken@3
+            displayName: 'Replace Token in ARM templates'
+            inputs:
+              targetFiles: "**/*.parameters.json"
+              ending: "auto"
+              writeBOM: true
+              actionOnMissing: "warn"
+              keepToken: false
+              tokenPrefix: "#{"
+              tokenPostfix: "}#"
+
+          - task: AzureResourceGroupDeployment@2
+            displayName: 'Provision CosmosDb'
+            enabled: true
+            inputs:
+              azureSubscription: '$(azureSubscription)'
+              resourceGroupName: "$(resourceGroupName)"
+              location: "$(location)"
+              templateLocation: "Linked Artifact"
+              csmFile: "**/CosmosDb.deploy.json"
+              csmParameterFile: "**/CosmosDb/parameters.json"
+              deploymentMode: "Incremental"
+
+              

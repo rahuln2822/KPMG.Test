@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPMG.Test.UnitTests", "KPMG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPMG.Processor", "Processor\KPMG.Processor.csproj", "{F24ED592-82FF-4FE7-8C79-4F8A29CECD66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPMG.Test.IntegrationTests", "KPMG.Test.IntegrationTests\KPMG.Test.IntegrationTests.csproj", "{59FFD7EF-C898-484E-9FAE-698EA8830765}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F24ED592-82FF-4FE7-8C79-4F8A29CECD66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F24ED592-82FF-4FE7-8C79-4F8A29CECD66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F24ED592-82FF-4FE7-8C79-4F8A29CECD66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59FFD7EF-C898-484E-9FAE-698EA8830765}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59FFD7EF-C898-484E-9FAE-698EA8830765}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59FFD7EF-C898-484E-9FAE-698EA8830765}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59FFD7EF-C898-484E-9FAE-698EA8830765}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

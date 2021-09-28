@@ -10,7 +10,7 @@ namespace KPMG_Test
     {        
         static void Main(string[] args)
         {
-            Console.WriteLine("KPMG Challenge");
+            Console.WriteLine("KPMG Challenge 1");
             var nestedObj = new Nested("x", new Nested("y", new Nested("z", "a")));
 
             var serviceProvider = GetServiceProvider();
@@ -19,6 +19,8 @@ namespace KPMG_Test
             nestedObjectChallenge.Write(nestedObj);
             nestedObjectChallenge.Write(nestedObj, "y");
 
+            Console.WriteLine();
+            Console.WriteLine("KPMG Challenge 2");
             var metadataChallenge = (IMetadataChallenge)serviceProvider.GetService(typeof(IMetadataChallenge));
             metadataChallenge.WriteMetadata(CancellationToken.None);
 

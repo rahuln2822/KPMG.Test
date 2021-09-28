@@ -3,10 +3,10 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "accountName": {
-      "value": "cosmosdb-north-test"
+      "value": "#{cosmosDbName}#"
     },
     "databaseName": {
-      "value": "kpmgtestdb"
+      "value": "#{databaseName}#"
     }
   }
 }

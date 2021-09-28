@@ -8,14 +8,50 @@ Assumptions :
 Latest 2020 deployment template allows us to create subscrition using ARM template
 It is dependent on billing account. For now, subscription creation is possible with Enterprise Account only
 
-#Resource Group and Cosmos DB Provisioning
-Resource group and cosmos db deployment done via same template.
+#Cosmos DB Provisioning
+Cosmos db deployment using CosmosDb.deploy.json and CosmosDb.parameters.json template.
+
+#CosmosDb.deploy.json file
+Contains the cosmos db resource to be provisioned.
+Account Name is the name of Cosmos Db
+Database Name is sql database in Cosmos db
+
+#CosmosDb.parameters.json file
+Takes the input from devops pipeline
+
+Due to time constraints, I am not able to finish end to end pipeline.
+But as thought process, I have added some pseudo steps and folder structure.
+
+Pseudo steps
+Install nuget
+Build Proejct
+Run unit and integration tests
+Publish templates and code to specific location
+Replace variables in parameters file
+Provision resource (and/or assign specific roles)
+(OR assign roles using powershell script) 
+
+Jobs folder - will take common template for jobs in this folder like a main deploy job which will provision and deploy resources
+Steps folder - common steps can be moved to this folder
+Variables folder - will have common as well as env specific variable files - dev.yml files added in folder
+azure-pipelines.yml (some proviosioning code is added) will be main file containing different required stages as per env.
+
 
 #Challenge 2
 
 As a part of this challenge, fetching metadata for cosmosdb account.
-To get cosmos db metadata, we have to assign role to our application in cosmosdb.
-Added a step to assing sql role in template
+To get cosmos db metadata, we have to assign role to our application/user/group in cosmosdb.
+
+For now, I have added the role manually via personal microsoft account on Cosmos Db.
+
+##KPMG.Processor
+AzureAuthHandler - Responsible for getting access token and add in request for authorization.
+Once, user has appropriate role in cosmos db, it will fetch its metadata. 
+
+##KPMG.Test.IntegrationTests
+Added integration test for this challenge to cover the functionality.
+
+Screen shot is attached in Output folder in same repository.
 
 #Challenge 3
 

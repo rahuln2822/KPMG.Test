@@ -17,9 +17,10 @@
   "resources": [
     {
       "type": "Microsoft.DocumentDB/databaseAccounts",
-      "apiVersion": "2021-04-15",
+      "apiVersion": "2021-06-15",
       "name": "[parameters('accountName')]",
       "location": "[parameters('location')]",
+      "kind": "GlobalDocumentDB", 
       "properties": {
         "enableFreeTier": true,
         "databaseAccountOfferType": "Standard",
@@ -35,7 +36,7 @@
     },
     {
       "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
-      "apiVersion": "2021-04-15",
+      "apiVersion": "2021-06-15",
       "name": "[format('{0}/{1}', parameters('accountName'), parameters('databaseName'))]",
       "properties": {
         "resource": {

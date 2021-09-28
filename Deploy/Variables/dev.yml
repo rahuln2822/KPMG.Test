@@ -1,0 +1,15 @@
+variables:
+  - name: azureSubscription
+    value: 'Free Trial'
+
+  - name: resourceGroupName
+    value: 'KPMG-test-rg'
+
+  - name: location
+    value: 'North Europe'
+
+  - name: cosmosDbName
+    value: 'cosmosdb-north-test'
+
+  - name: databaseName
+    value: 'kpmgtestdb'

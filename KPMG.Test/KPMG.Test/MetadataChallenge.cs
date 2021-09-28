@@ -1,4 +1,5 @@
-﻿using Processor;
+﻿using Newtonsoft.Json;
+using Processor;
 using System;
 using System.Threading;
 
@@ -22,7 +23,7 @@ namespace KPMG.Test
             try
             {
                 var metadataKeys = _cosmosDbMetadata.GetAccountSettingsAsync(cancellationToken).GetAwaiter().GetResult();
-                Console.WriteLine($"Primary Metadata key : {metadataKeys.PrimaryMasterKey}");
+                Console.WriteLine($"Cosmos Metadata : {JsonConvert.SerializeObject(metadataKeys)}");
             }
             catch (Exception ex)
             {
