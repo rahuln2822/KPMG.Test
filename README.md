@@ -1,10 +1,10 @@
-### KPMG.Test
+# KPMG.Test
 ## Challenge 1
 
 Assumptions :
 3-tier common setup considered as Subscription, ResourceGroup and Component
 
-# Subscrition Provisioning
+### Subscrition Provisioning
 Latest 2020 deployment template allows us to create subscrition using ARM template
 It is dependent on billing account. For now, subscription creation is possible with Enterprise Account only
 
@@ -37,7 +37,7 @@ Variables folder - will have common as well as env specific variable files - dev
 azure-pipelines.yml (some proviosioning code is added) will be main file containing different required stages as per env.
 
 
-### Challenge 2
+## Challenge 2
 
 As a part of this challenge, fetching metadata for cosmosdb account.
 To get cosmos db metadata, we have to assign role to our application/user/group in cosmosdb.
@@ -53,9 +53,9 @@ Added integration test for this challenge to cover the functionality.
 
 Screen shot is attached in Output folder in same repository.
 
-### Challenge 3
+## Challenge 3
 
-###Assumptions
+### Assumptions
 1. As a part of this challenge, I am assuming input is passed as a nested object and not plain string representing nested object.
 2. Key and Value will be of string only
 
@@ -81,6 +81,6 @@ Returns the final value of nested object
 Returns the object (string or Nested class object) depending upon the input key
 For now, it supports single key input.
 
-##KPMG.Test.UnitTests
+### KPMG.Test.UnitTests
 This project will have unit tests cases for Nested class
 Unit testing all above methods along with a check if invalid key is passed to GetValueByKey() method
